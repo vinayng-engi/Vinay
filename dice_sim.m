@@ -1,5 +1,6 @@
 % Visual Dice Roller Simulator
 clear; clc; close all;
+warning('off', 'all'); % Suppress toolkit and graphics warnings
 
 fprintf('--- Welcome to the Visual Dice Roller! ---\n');
 
@@ -13,8 +14,7 @@ if isempty(rolls) || rolls <= 0
 end
 
 % 2. Simulate rolling a 6-sided die
-% randi([1, 6], rolls, 1) generates an array of random integers between 1 and 6
-results = randi([1, 6], rolls, 1);
+results = randi(6, rolls, 1);
 
 % 3. Count how many times each face (1 to 6) appeared
 counts = zeros(1, 6);
@@ -38,4 +38,8 @@ grid on;
 title(sprintf('Distribution of %d Random Dice Rolls', rolls), 'FontSize', 12);
 xlabel('Dice Face', 'FontSize', 10);
 ylabel('Number of Times Rolled', 'FontSize', 10);
-set(gca, 'XTick', 1:6); % Ensure x-axis only shows integers 1 through 6
+set(gca, 'XTick', 1:6); 
+
+% 6. Keep the chart window open until user presses enter
+fprintf('\nPress Enter in the terminal to close the chart window...\n');
+pause;
